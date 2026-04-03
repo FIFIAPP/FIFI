@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    background: #0f0f0f;
+    color: #e8e4df;
+    padding: 48px 24px;
+    line-height: 1.75;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .wordmark {
+    font-family: 'DM Serif Display', serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #9b7fff;
+    margin-bottom: 48px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .effective {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 56px;
+    letter-spacing: 0.04em;
+  }
+
+  .section {
+    margin-bottom: 44px;
+    padding-bottom: 44px;
+    border-bottom: 1px solid #1e1e1e;
+  }
+
+  .section:last-child {
+    border-bottom: none;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 15px;
+    color: #b0aa9f;
+    margin-bottom: 14px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 0 0;
+  }
+
+  ul li {
+    font-size: 15px;
+    color: #b0aa9f;
+    padding: 8px 0 8px 20px;
+    border-bottom: 1px solid #1a1a1a;
+    position: relative;
+  }
+
+  ul li:last-child { border-bottom: none; }
+
+  ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #9b7fff;
+    font-size: 12px;
+  }
+
+  .highlight-box {
+    background: #161616;
+    border: 1px solid #252525;
+    border-left: 3px solid #9b7fff;
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-top: 16px;
+  }
+
+  .highlight-box p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  a {
+    color: #9b7fff;
+    text-decoration: none;
+  }
+
+  .contact-block {
+    background: #161616;
+    border: 1px solid #252525;
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 16px;
+  }
+
+  .contact-block .label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #444;
+    margin-bottom: 6px;
+  }
+
+  .contact-block .email {
+    font-size: 16px;
+    color: #9b7fff;
+    font-weight: 500;
+  }
+
+  .copy-btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 20px;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: #888;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .copy-btn:hover { background: #252525; color: #ccc; }
+
+  .footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid #1a1a1a;
+    font-size: 12px;
+    color: #3a3a3a;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="wordmark">FIFI</div>
+
+  <h1>Privacy Policy</h1>
+  <p class="effective">Effective date: 28 March 2026 &nbsp;·&nbsp; Last updated: 28 March 2026</p>
+
+  <div class="section">
+    <h2>What is FIFI?</h2>
+    <p>FIFI is a Chrome extension that analyzes the structure of Reddit discussion threads to surface high-signal escalation and contention points. It is a read-only tool. FIFI does not post, vote, reply, report, or interact with Reddit on your behalf in any way.</p>
+  </div>
+
+  <div class="section">
+    <h2>What we collect</h2>
+    <p>FIFI collects only what is necessary to provide the service:</p>
+    <ul>
+      <li>Your email address, used to create and identify your FIFI account</li>
+      <li>Your subscription status and plan tier (free or paid)</li>
+      <li>Anonymous, structural usage events — such as whether an analysis was started or a result was navigated to. These contain no Reddit content, no usernames, and no personally identifying information. They are retained for 90 days and then permanently deleted.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>What we do not collect</h2>
+    <p>FIFI does not collect, store, or transmit any of the following:</p>
+    <ul>
+      <li>Reddit comment text, thread content, or post bodies</li>
+      <li>Your Reddit username or account identity</li>
+      <li>Your browsing history or activity outside of Reddit threads you choose to analyze</li>
+      <li>Any content from Reddit threads — analysis runs on our servers and results are returned to you; no thread content is retained</li>
+      <li>Your payment card details — these are handled entirely by Stripe and never touch our systems</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Payments</h2>
+    <p>FIFI uses <a href="https://stripe.com" target="_blank">Stripe</a> to process subscription payments. When you subscribe, your payment details are entered directly on Stripe's hosted payment page and are governed by Stripe's own privacy policy. FIFI stores only your Stripe customer ID and subscription status — never your card number, CVV, or billing address.</p>
+    <p>A 30-day refund is available on request. Contact us at the address below.</p>
+  </div>
+
+  <div class="section">
+    <h2>How your data is stored</h2>
+    <p>Account and subscription data is stored securely in <a href="https://supabase.com" target="_blank">Supabase</a>, a managed cloud database provider with encrypted storage and row-level security. Your data is not shared with, sold to, or accessible by any third party other than Stripe (for payment processing) and Supabase (for storage infrastructure).</p>
+  </div>
+
+  <div class="section">
+    <h2>Cookies and local storage</h2>
+    <p>FIFI stores your authentication token locally in your browser using Chrome's extension storage API. This is used solely to keep you logged in between sessions. No third-party cookies or tracking pixels are used.</p>
+  </div>
+
+  <div class="section">
+    <h2>Your rights</h2>
+    <p>You may request deletion of your account and all associated data at any time. To do so, email us at the address below. We will process deletion requests within 30 days.</p>
+    <p>You may also request a copy of the data we hold about you. The same contact address applies.</p>
+  </div>
+
+  <div class="section">
+    <h2>Children</h2>
+    <p>FIFI is not directed at children under the age of 13. We do not knowingly collect personal information from anyone under 13.</p>
+  </div>
+
+  <div class="section">
+    <h2>Changes to this policy</h2>
+    <p>If we make material changes to this policy, we will update the effective date above. Continued use of FIFI after changes are posted constitutes acceptance of the updated policy.</p>
+  </div>
+
+  <div class="section">
+    <h2>Contact</h2>
+    <p>For privacy questions, data deletion requests, or refund requests:</p>
+    <div class="contact-block">
+      <div class="label">Email</div>
+      <div class="email">fifiapp.contact@gmail.com</div>
+    </div>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.querySelector('.container').innerText); this.textContent='Copied!'; setTimeout(()=>this.textContent='Copy all text', 2000)">Copy all text</button>
+  </div>
+
+  <div class="footer">FIFI &nbsp;·&nbsp; fifiapp.carrd.co &nbsp;·&nbsp; All rights reserved</div>
+
+</div>
+</body>
+</html>
