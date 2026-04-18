@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIFI — No problem</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple-start: #9333ea;
+      --purple-end:   #c026d3;
+      --bg-gradient:  linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --card-bg:      #ffffff;
+      --text-primary: #111827;
+      --text-muted:   #6b7280;
+      --divider:      #e5e7eb;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-gradient);
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 480px;
+      width: 100%;
+      overflow: hidden;
+      animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-hero {
+      background: linear-gradient(135deg, var(--purple-start) 0%, var(--purple-end) 100%);
+      padding: 32px 40px 28px;
+      text-align: center;
+    }
+
+    .wordmark {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ffffff;
+      background: transparent;
+      display: inline-block;
+      padding: 10px 22px;
+      line-height: 1;
+      margin-bottom: 4px;
+      user-select: none;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      font-weight: 400;
+    }
+
+    .card-body {
+      padding: 40px 40px 36px;
+      text-align: center;
+    }
+
+    .icon-ring {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #f9fafb;
+      border: 2px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      animation: pop 0.4s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes pop {
+      from { opacity: 0; transform: scale(0.6); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .icon-ring svg {
+      width: 28px;
+      height: 28px;
+      stroke: #6b7280;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .card-body p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .card-body p strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--divider);
+      margin: 28px 0;
+    }
+
+    .reminder {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      text-align: left;
+      background: #faf5ff;
+      border: 1px solid #e9d5ff;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .reminder:last-of-type { margin-bottom: 0; }
+
+    .reminder-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple-start), var(--purple-end));
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .reminder-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .reminder-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .card-footer {
+      padding: 16px 40px 28px;
+      text-align: center;
+    }
+
+    .card-footer p {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .card-footer a {
+      color: var(--purple-start);
+      text-decoration: none;
+    }
+
+    .card-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <div class="card-hero">
+      <div class="wordmark">FIFI</div>
+      <p class="tagline">A clearer view of where Reddit threads intensify.</p>
+    </div>
+
+    <div class="card-body">
+
+      <div class="icon-ring">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </div>
+
+      <h1 class="card-title">No problem.</h1>
+      <p>You haven't been charged. Your free account is still active — FIFI is still there when you need it.</p>
+
+      <div class="divider"></div>
+
+      <div class="reminder">
+        <div class="reminder-icon">✓</div>
+        <div class="reminder-text"><strong>Free tier is still yours.</strong> Top 5 escalation points, Invisible Thread, Thread Fingerprint, and Find of The Day are available on every thread.</div>
+      </div>
+
+      <div class="reminder">
+        <div class="reminder-icon">↑</div>
+        <div class="reminder-text"><strong>Upgrade whenever you're ready.</strong> Click "Upgrade to Premium" in the FIFI popup anytime to unlock unlimited results, Subreddit Intelligence, and more.</div>
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+      <p>FIFI · <a href="https://fifiapp.github.io/FIFI/" target="_blank" rel="noopener">Privacy Policy</a> · <a href="mailto:fifiapp.contact@gmail.com">Feedback</a></p>
+    </div>
+
+  </div>
+
+</body>
+</html>
