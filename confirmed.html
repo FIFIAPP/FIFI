@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIFI — Email Confirmed</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple-start: #9333ea;
+      --purple-end:   #c026d3;
+      --bg-gradient:  linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --card-bg:      #ffffff;
+      --text-primary: #111827;
+      --text-muted:   #6b7280;
+      --accent:       #10b981;
+      --accent-soft:  #f0fdf4;
+      --divider:      #e5e7eb;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-gradient);
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 480px;
+      width: 100%;
+      overflow: hidden;
+      animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-hero {
+      background: linear-gradient(135deg, var(--purple-start) 0%, var(--purple-end) 100%);
+      padding: 32px 40px 28px;
+      text-align: center;
+    }
+
+    .wordmark {
+      display: inline-block;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ffffff;
+      background: transparent;
+      padding: 10px 22px;
+      line-height: 1;
+      margin-bottom: 16px;
+      user-select: none;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      font-weight: 400;
+    }
+
+    .card-body {
+      padding: 40px 40px 36px;
+      text-align: center;
+    }
+
+    .check-ring {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      animation: pop 0.4s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes pop {
+      from { opacity: 0; transform: scale(0.6); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .check-ring svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--accent);
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .card-body p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .card-body p strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--divider);
+      margin: 28px 0;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      text-align: left;
+      margin-bottom: 16px;
+    }
+
+    .step:last-child { margin-bottom: 0; }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple-start), var(--purple-end));
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .step-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .card-footer {
+      padding: 16px 40px 28px;
+      text-align: center;
+    }
+
+    .card-footer p {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .card-footer a {
+      color: var(--purple-start);
+      text-decoration: none;
+    }
+
+    .card-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <div class="card-hero">
+      <div class="wordmark">FIFI</div>
+      <p class="tagline">A clearer view of where Reddit threads intensify.</p>
+    </div>
+
+    <div class="card-body">
+
+      <div class="check-ring">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <h1 class="card-title">Email confirmed.</h1>
+      <p>Your FIFI account is ready. You're one step away from seeing what Reddit's surface has been hiding.</p>
+
+      <div class="divider"></div>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Open the FIFI extension</strong> by clicking the FIFI icon in your Chrome toolbar.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Click "Sign in to FIFI"</strong> and enter your email and password.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Head to Reddit</strong> and click the FIFI button on any thread page to analyze it, or on any subreddit feed to see which threads are worth opening before you read them.</div>
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+      <p>FIFI · <a href="https://fifiapp.github.io/FIFI/" target="_blank" rel="noopener">Privacy Policy</a> · <a href="mailto:fifiapp.contact@gmail.com">Feedback</a></p>
+    </div>
+
+  </div>
+
+</body>
+</html>
