@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIFI</title>
+  <script>
+    // Supabase redirects here after email confirmation or password reset.
+    // Forward to the correct page based on the token type in the URL hash.
+    (function() {
+      const hash   = window.location.hash;
+      const params = new URLSearchParams(hash.substring(1));
+      const type   = params.get('type');
+
+      if (type === 'recovery') {
+        // Password reset — forward to reset-password.html with hash intact
+        window.location.replace('reset-password.html' + hash);
+      } else {
+        // Email confirmation (signup, email change, etc.) — forward to confirmed.html
+        window.location.replace('confirmed.html' + hash);
+      }
+    })();
+  </script>
+</head>
+<body></body>
+</html>
