@@ -11,6 +11,14 @@
       const hash   = window.location.hash;
       const params = new URLSearchParams(hash.substring(1));
       const type   = params.get('type');
+      const error  = params.get('error');
+
+      // If Supabase returned an error (e.g. link already used or expired),
+      // redirect to the friendly error page instead of the normal flow.
+      if (error) {
+        window.location.replace('error.html' + hash);
+        return;
+      }
 
       if (type === 'recovery') {
         // Password reset — forward to reset-password.html with hash intact
