@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIFI — Link Expired</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple-start: #9333ea;
+      --purple-end:   #c026d3;
+      --bg-gradient:  linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --card-bg:      #ffffff;
+      --text-primary: #111827;
+      --text-muted:   #6b7280;
+      --divider:      #e5e7eb;
+      --surface-alt:  #f9fafb;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-gradient);
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 480px;
+      width: 100%;
+      overflow: hidden;
+      animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-hero {
+      background: linear-gradient(135deg, var(--purple-start) 0%, var(--purple-end) 100%);
+      padding: 32px 40px 28px;
+      text-align: center;
+    }
+
+    .wordmark {
+      display: inline-block;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ffffff;
+      background: transparent;
+      padding: 10px 22px;
+      line-height: 1;
+      margin-bottom: 16px;
+      user-select: none;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      font-weight: 400;
+    }
+
+    .card-body {
+      padding: 40px 40px 36px;
+      text-align: center;
+    }
+
+    .icon-ring {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #fef2f2;
+      border: 2px solid #fca5a5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      animation: pop 0.4s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes pop {
+      from { opacity: 0; transform: scale(0.6); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .icon-ring svg {
+      width: 28px;
+      height: 28px;
+      stroke: #ef4444;
+    }
+
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .card-body p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .card-footer {
+      background-color: var(--surface-alt);
+      border-top: 1px solid var(--divider);
+      padding: 20px 40px;
+      text-align: center;
+    }
+
+    .card-footer p {
+      font-size: 12px;
+      color: #9ca3af;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .card-footer a {
+      color: var(--purple-start);
+      text-decoration: none;
+    }
+
+    .card-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <div class="card-hero">
+      <div class="wordmark">FIFI</div>
+      <p class="tagline">A clearer view of where Reddit threads intensify.</p>
+    </div>
+
+    <div class="card-body">
+
+      <div class="icon-ring">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+
+      <h1 class="card-title">This link has expired.</h1>
+      <p>This link has already been used or is no longer valid. Links expire after 24 hours and can only be used once.</p>
+      <p style="margin-top:16px;">If you need to confirm your email or reset your password, open the FIFI extension and start again.</p>
+
+    </div>
+
+    <div class="card-footer">
+      <p>FIFI · Reddit Thread Signal &amp; Escalation Analyzer<br>
+      <a href="https://fifiapp.app/privacy" target="_blank" rel="noopener">Privacy Policy</a> · <a href="mailto:fifiapp.contact@gmail.com">Feedback</a></p>
+    </div>
+
+  </div>
+
+</body>
+</html>
