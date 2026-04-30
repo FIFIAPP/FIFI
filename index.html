@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIFI — Find what Reddit buries</title>
+  <meta name="description" content="Reddit shows you what people agreed with. FIFI shows you where the conversation actually happened.">
+  <meta property="og:title" content="FIFI — Find what Reddit buries">
+  <meta property="og:description" content="Reddit shows you what people agreed with. FIFI shows you where the conversation actually happened.">
+  <meta property="og:url" content="https://fifiapp.app">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Barlow:wght@800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple-start:   #9333ea;
+      --purple-end:     #c026d3;
+      --purple-solid:   #9B30D9;
+      --purple-deep:    #6b21a8;
+      --purple-faint:   #f5f0ff;
+      --text-primary:   #111827;
+      --text-secondary: #4b5563;
+      --text-muted:     #6b7280;
+      --divider:        #e5e7eb;
+      --accent:         #10b981;
+      --surface:        #ffffff;
+      --surface-alt:    #f9fafb;
+      --gradient-bg:    linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-brand: linear-gradient(135deg, #9333ea 0%, #c026d3 100%);
+      --radius-sm:      8px;
+      --radius-md:      12px;
+      --radius-lg:      16px;
+      --radius-btn:     12px;
+      --font-body:      'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --transition-fast: 150ms ease;
+      --transition-med:  240ms ease;
+      --surface-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--surface);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(229,231,235,0.7);
+    }
+
+    .nav-wordmark {
+      font-family: var(--font-body);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ffffff;
+      background: var(--gradient-brand);
+      padding: 6px 18px;
+      border-radius: var(--radius-sm);
+      user-select: none;
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-links a:hover { color: var(--purple-start); }
+
+    .nav-cta {
+      background: var(--gradient-brand) !important;
+      color: white !important;
+      padding: 10px 24px !important;
+      border-radius: var(--radius-btn) !important;
+      font-weight: 600 !important;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+    }
+
+    .nav-cta:hover {
+      transform: scale(1.04) !important;
+      box-shadow: 0 6px 20px rgba(147,51,234,0.3) !important;
+      color: white !important;
+    }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--gradient-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 24px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 60%, rgba(147,51,234,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(192,38,211,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-wordmark {
+      width: 160px;
+      height: 160px;
+      border-radius: 28px;
+      display: block;
+      margin: 0 auto 48px;
+      position: relative;
+      animation: fadeUp 0.55s ease both;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+    }
+
+    .hero-headline {
+      font-size: clamp(26px, 4.5vw, 48px);
+      font-weight: 700;
+      color: white;
+      line-height: 1.25;
+      margin-bottom: 24px;
+      max-width: 780px;
+      position: relative;
+      animation: fadeUp 0.55s ease 0.1s both;
+    }
+
+    .hero-sub {
+      font-size: 19px;
+      color: rgba(255,255,255,0.85);
+      max-width: 580px;
+      margin-bottom: 52px;
+      line-height: 1.65;
+      position: relative;
+      animation: fadeUp 0.55s ease 0.2s both;
+      font-weight: 400;
+    }
+
+    .hero-cta-wrap {
+      position: relative;
+      animation: fadeUp 0.55s ease 0.3s both;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .btn-coming-soon {
+      background: white;
+      color: var(--purple-start);
+      border: none;
+      border-radius: var(--radius-btn);
+      padding: 18px 48px;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: var(--font-body);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      cursor: default;
+    }
+
+    .badge-soon {
+      background: var(--gradient-brand);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+    }
+
+    /* ── DIFFERENTIATOR STRIP ──────────────────────── */
+    .strip {
+      background: var(--surface-alt);
+      border-top: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+      padding: 48px 24px;
+    }
+
+    .strip-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    .strip-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .strip-number {
+      font-size: 38px;
+      font-weight: 700;
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .strip-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* ── CONTRAST ──────────────────────────────────── */
+    .section {
+      padding: 100px 24px;
+    }
+
+    .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--purple-start);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .section-headline {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 700;
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--text-secondary);
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 64px;
+      line-height: 1.65;
+    }
+
+    /* Two-column contrast */
+    .contrast-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .contrast-card {
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      border: 1px solid var(--divider);
+    }
+
+    .contrast-card.c-neutral {
+      background: var(--surface-alt);
+    }
+
+    .contrast-card.c-brand {
+      background: var(--purple-faint);
+      border-color: rgba(147,51,234,0.18);
+    }
+
+    .contrast-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 22px;
+    }
+
+    .tag-reddit { background: #ff4500; color: white; }
+    .tag-fifi   { background: var(--gradient-brand); color: white; }
+
+    .contrast-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .contrast-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contrast-list li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      padding-left: 26px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .c-neutral .contrast-list li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .c-brand .contrast-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── FEATURES ──────────────────────────────────── */
+    .features-bg {
+      background: var(--surface-alt);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      border: 1px solid var(--divider);
+      transition: box-shadow var(--transition-med), transform var(--transition-med);
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 12px 40px rgba(147,51,234,0.1);
+      transform: translateY(-3px);
+    }
+
+    .feature-pip {
+      width: 4px;
+      height: 32px;
+      background: var(--gradient-brand);
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    .feature-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── STATEMENT BAND ────────────────────────────── */
+    .statement {
+      background: var(--gradient-bg);
+      padding: 100px 24px;
+      text-align: center;
+    }
+
+    .statement-inner {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .statement-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 20px;
+    }
+
+    .statement-quote {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 700;
+      color: white;
+      line-height: 1.4;
+      margin-bottom: 48px;
+    }
+
+    .btn-statement {
+      background: white;
+      color: var(--purple-start);
+      border: none;
+      border-radius: var(--radius-btn);
+      padding: 18px 48px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: var(--font-body);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      cursor: default;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    }
+
+    /* ── PRICING ───────────────────────────────────── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      border: 1px solid var(--divider);
+      background: var(--surface);
+    }
+
+    .pricing-card.p-premium {
+      background: var(--purple-faint);
+      border-color: rgba(147,51,234,0.22);
+      position: relative;
+    }
+
+    .recommended-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gradient-brand);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 20px;
+      border-radius: 999px;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+
+    .pricing-tier {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .pricing-price {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .pricing-price sup {
+      font-size: 22px;
+      font-weight: 600;
+      vertical-align: top;
+      margin-top: 8px;
+    }
+
+    .pricing-price span {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .pricing-alt {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .pricing-divider {
+      height: 1px;
+      background: var(--divider);
+      margin-bottom: 24px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      padding-left: 24px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .btn-plan {
+      width: 100%;
+      background: var(--gradient-brand);
+      color: white;
+      border: none;
+      border-radius: var(--radius-btn);
+      padding: 16px 24px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: default;
+      font-family: var(--font-body);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-plan-outline {
+      width: 100%;
+      background: white;
+      color: var(--purple-start);
+      border: 2px solid var(--purple-start);
+      border-radius: var(--radius-btn);
+      padding: 14px 24px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: default;
+      font-family: var(--font-body);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* ── FOOTER ────────────────────────────────────── */
+    footer {
+      padding: 28px 48px;
+      background: var(--surface-alt);
+      border-top: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-left {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 28px;
+    }
+
+    .footer-right a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-right a:hover { color: var(--purple-start); }
+
+    /* ── ANIMATIONS ────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 860px) {
+      .contrast-grid,
+      .pricing-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .strip-inner { grid-template-columns: 1fr; gap: 28px; }
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .nav-links .nav-link-hide { display: none; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-right { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-wordmark">FIFI</a>
+    <div class="nav-links">
+      <a href="#features" class="nav-link-hide">Features</a>
+      
+      <a href="https://fifiapp.app/privacy" class="nav-link-hide">Privacy</a>
+      <a href="#hero" class="nav-cta">Coming Soon</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <img class="hero-wordmark" src="data:image/png;base64,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" alt="FIFI" width="160" height="160">
+    <h1 class="hero-headline">Reddit shows you what people agreed with.<br>FIFI shows you where the conversation actually happened.</h1>
+    <p class="hero-sub">The back-and-forth buried at depth 5. The branch that attracted 47 replies while the top comment sat at 2. The moment a thread stopped being a discussion and became an argument.</p>
+    <div class="hero-cta-wrap">
+      <div class="btn-coming-soon">
+        Get FIFI for Chrome
+        <span class="badge-soon">Coming Soon</span>
+      </div>
+      <p class="hero-note">Free to install &middot; Chrome extension</p>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-inner">
+      <div class="strip-stat">
+        <div class="strip-number">Top 5</div>
+        <div class="strip-label">escalation points surfaced<br>on every thread — free</div>
+      </div>
+      <div class="strip-stat">
+        <div class="strip-number">1-click</div>
+        <div class="strip-label">jump from surface to<br>buried exchange</div>
+      </div>
+      <div class="strip-stat">
+        <div class="strip-number">8 types</div>
+        <div class="strip-label">Thread Fingerprints that tell<br>you what you're about to enter</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTRAST -->
+  <section class="section">
+    <div class="section-inner">
+      <p class="section-eyebrow">The difference</p>
+      <h2 class="section-headline">Same thread. Completely different experience.</h2>
+      <p class="section-sub">Reddit's voting system surfaces consensus and popularity. FIFI surfaces activity, contention, and where the real conversation actually concentrated.</p>
+
+      <div class="contrast-grid">
+        <div class="contrast-card c-neutral">
+          <span class="contrast-tag tag-reddit">Reddit</span>
+          <h3 class="contrast-title">What you see now</h3>
+          <ul class="contrast-list">
+            <li>The most upvoted comments float to the top</li>
+            <li>Buried exchanges at depth 5 and beyond are invisible</li>
+            <li>You leave unaware of what you missed</li>
+            <li>No indication of how much the thread hid from you</li>
+          </ul>
+        </div>
+        <div class="contrast-card c-brand">
+          <span class="contrast-tag tag-fifi">FIFI</span>
+          <h3 class="contrast-title">What you get with FIFI</h3>
+          <ul class="contrast-list">
+            <li>Escalation points ranked by conversational intensity</li>
+            <li>Jump directly into the buried exchange in one click</li>
+            <li>See exactly how much of the thread Reddit never showed you</li>
+            <li>Know the structural shape of the thread before you read a word</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section features-bg" id="features">
+    <div class="section-inner">
+      <p class="section-eyebrow">What FIFI surfaces</p>
+      <h2 class="section-headline">Everything Reddit buries. Surfaced.</h2>
+      <p class="section-sub">A Chrome extension that reads the full comment tree — not just what Reddit renders — and tells you where it actually happened.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-pip"></div>
+          <h3 class="feature-name">Escalation Points</h3>
+          <p class="feature-desc">The comment exchanges where a thread's energy concentrated most. Ranked by score. Click any result to jump directly there, with full context loaded.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip"></div>
+          <h3 class="feature-name">Invisible Thread</h3>
+          <p class="feature-desc">The percentage of this thread's total comments Reddit actually rendered on your screen. Most readers never know how much they're missing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip"></div>
+          <h3 class="feature-name">Thread Fingerprint</h3>
+          <p class="feature-desc">One label that tells you the structural shape of the thread. Deep Chain. Fragmented Burst. Wide &amp; Contested. Before you read a single comment.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip"></div>
+          <h3 class="feature-name">Top Exchange</h3>
+          <p class="feature-desc">For each escalation point, FIFI traces the single most active reply path — the longest back-and-forth between two people who clearly weren't letting it go.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip"></div>
+          <h3 class="feature-name">Subreddit Intelligence</h3>
+          <p class="feature-desc">Score every thread on a subreddit feed before you open any of them. Know which threads are worth reading before you click. Filter by fingerprint, signal, comment count.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip"></div>
+          <h3 class="feature-name">Thread Watch</h3>
+          <p class="feature-desc">Star any analyzed thread and FIFI monitors it quietly in the background. When activity spikes, a badge appears on your toolbar — without you doing anything.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement">
+    <div class="statement-inner">
+      <p class="statement-eyebrow">The core of what FIFI does</p>
+      <p class="statement-quote">"Reddit shows you what people agreed with. FIFI shows you where the conversation actually happened."</p>
+      <div class="btn-statement">
+        Get FIFI for Chrome <span class="badge-soon">Coming Soon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">© 2026 FIFI &middot; Reddit Thread Signal &amp; Escalation Analyzer</div>
+    <div class="footer-right">
+      <a href="https://fifiapp.app/privacy">Privacy Policy</a>
+      <a href="mailto:fifiapp.contact@gmail.com">Contact</a>
+      <a href="https://www.youtube.com/@fifi_app" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://x.com/fifiapp_" target="_blank" rel="noopener">X</a>
+    </div>
+  </footer>
+
+</body>
+</html>
