@@ -374,6 +374,11 @@
       gap: 20px;
     }
 
+    /* Center an orphan card on the last row of the 3-col desktop grid */
+    .features-grid > .feature-card:last-child:nth-child(3n+1) {
+      grid-column: 2;
+    }
+
     .feature-card {
       background: var(--surface);
       border-radius: var(--radius-lg);
@@ -740,6 +745,21 @@
         </div>
         <div class="feature-card">
           <div class="feature-pip"></div>
+          <h3 class="feature-name">Top Exchange</h3>
+          <p class="feature-desc">Two people went back and forth 23 times. Nobody else saw it. FIFI traces the single most active reply path and renders the whole conversation inside the overlay.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip"></div>
+          <h3 class="feature-name">Thread Receipt</h3>
+          <p class="feature-desc">After every analysis, FIFI generates a shareable image card — thread title, top escalation find, FIFI branding. No usernames. Export as PNG and keep it or share it.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip"></div>
+          <h3 class="feature-name">Thread Fingerprint</h3>
+          <p class="feature-desc">Before you read a word — you already know if this thread is a pile-on, a debate, or a dead end. Deep Chain. Fragmented Burst. Wide &amp; Contested. One label. Eight possible shapes.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip"></div>
           <h3 class="feature-name">Invisible Thread</h3>
           <p class="feature-desc">You read the whole thread. Except you didn't. Reddit showed you 12% of it. FIFI shows you exactly what percentage of the total comment tree actually reached your screen.</p>
         </div>
@@ -750,18 +770,18 @@
         </div>
         <div class="feature-card">
           <div class="feature-pip"></div>
-          <h3 class="feature-name">Thread Fingerprint</h3>
-          <p class="feature-desc">Before you read a word — you already know if this thread is a pile-on, a debate, or a dead end. Deep Chain. Fragmented Burst. Wide &amp; Contested. One label. Eight possible shapes.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-pip"></div>
-          <h3 class="feature-name">Top Exchange</h3>
-          <p class="feature-desc">Two people went back and forth 23 times. Nobody else saw it. FIFI traces the single most active reply path and renders the whole conversation inside the overlay.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-pip"></div>
           <h3 class="feature-name">Subreddit Intelligence</h3>
           <p class="feature-desc">You can see 25 threads. One of them is actually worth your time. FIFI scores every thread on the feed before you open any of them — so you know which one to click.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip"></div>
+          <h3 class="feature-name">Find of The Day</h3>
+          <p class="feature-desc">Every day, one thread worth your attention — surfaced at the bottom of your overlay. Free users get the highest-traffic thread on Reddit right now. No searching required.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-pip"></div>
+          <h3 class="feature-name">Personal Intensity Benchmark</h3>
+          <p class="feature-desc">After enough analyses, FIFI builds a personal baseline from your history. When a thread lands in your top 25%, one line appears: "This is in the top 15% of threads you've ever found." When it doesn't clear the bar, nothing shows. The silence is the signal.</p>
         </div>
         <div class="feature-card">
           <div class="feature-pip"></div>
@@ -782,21 +802,6 @@
           <div class="feature-pip"></div>
           <h3 class="feature-name">NEW badges</h3>
           <p class="feature-desc">Each escalation point that wasn't there last time gets a gold NEW badge above its meta line. No more scanning the whole list to find what's changed. You have 30 minutes to investigate before the badges quietly clear on the next analysis.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-pip"></div>
-          <h3 class="feature-name">Personal Intensity Benchmark</h3>
-          <p class="feature-desc">After enough analyses, FIFI builds a personal baseline from your history. When a thread lands in your top 25%, one line appears: "This is in the top 15% of threads you've ever found." When it doesn't clear the bar, nothing shows. The silence is the signal.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-pip"></div>
-          <h3 class="feature-name">Find of The Day</h3>
-          <p class="feature-desc">Every day, one thread worth your attention — surfaced at the bottom of your overlay. Free users get the highest-traffic thread on Reddit right now. No searching required.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-pip"></div>
-          <h3 class="feature-name">Thread Receipt</h3>
-          <p class="feature-desc">After every analysis, FIFI generates a shareable image card — thread title, top escalation find, FIFI branding. No usernames. Export as PNG and keep it or share it.</p>
         </div>
       </div>
     </div>
