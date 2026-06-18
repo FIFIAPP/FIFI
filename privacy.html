@@ -221,13 +221,12 @@
     <p>FIFI requests only the Chrome permissions required for the features described above:</p>
     <ul>
       <li><strong>storage</strong> — to keep your FIFI authentication session active between browser sessions, and to remember settings such as your watched threads list locally.</li>
-      <li><strong>activeTab</strong> — to read the current Reddit page URL and DOM in order to identify the thread you are viewing, render FIFI's analysis overlay, and calculate how much of the thread Reddit has rendered on screen.</li>
-      <li><strong>tabs</strong> — to open the Stripe checkout page in a new browser tab when you initiate a Premium upgrade.</li>
       <li><strong>notifications</strong> — to surface a system notification when one of your watched threads shows meaningful new activity.</li>
-      <li><strong>alarms</strong> — to schedule the background polling that powers Thread Watch.</li>
+      <li><strong>alarms</strong> — to schedule the background polling that powers Thread Watch, and to refresh your authentication session.</li>
       <li><strong>Host access to reddit.com</strong> — to fetch the public JSON for the thread you are analyzing, and (when Thread Watch is active) to periodically check that thread's public comment count. FIFI never reads, accesses, or interacts with your Reddit account.</li>
       <li><strong>Host access to supabase.co</strong> — to communicate with FIFI's own backend (authentication, subscription status, and the scoring engine). This is FIFI's own infrastructure, not a third-party data collector.</li>
     </ul>
+    <p>When you start a Premium upgrade, FIFI opens Stripe's checkout page in a new browser tab. This uses Chrome's standard tab-opening capability and does not require any additional permission.</p>
   </div>
 
   <div class="section">
