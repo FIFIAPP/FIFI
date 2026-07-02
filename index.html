@@ -637,6 +637,16 @@
 
     .footer-right a:hover { color: var(--purple-start); }
 
+    .footer-badges {
+      display: flex;
+      justify-content: center;
+      padding: 20px 48px 32px;
+      background: var(--surface-alt);
+    }
+    .footer-badges a { display: inline-flex; opacity: 0.85; transition: opacity var(--transition-fast); }
+    .footer-badges a:hover { opacity: 1; }
+    .footer-badges img { border-radius: 6px; }
+
     /* ── ANIMATIONS ────────────────────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
@@ -840,6 +850,13 @@
       <a href="https://www.instagram.com/fifiapp_" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a>
     </div>
   </footer>
+
+  <!-- SMOL LAUNCH BADGE -->
+  <div class="footer-badges">
+    <a href="https://smollaunch.com" target="_blank" rel="noopener">
+      <img src="https://smollaunch.com/badges/featured.svg" alt="FIFI — Featured on Smol Launch" loading="lazy" width="250" height="60" />
+    </a>
+  </div>
 
 </body>
 </html>
