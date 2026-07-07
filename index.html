@@ -679,6 +679,7 @@
       .contrast-grid,
       .pricing-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr; }
+      .features-grid > .feature-card:last-child:nth-child(3n+1) { grid-column: 1; }
       .strip-inner { grid-template-columns: 1fr; gap: 28px; }
       nav { padding: 14px 20px; }
       .nav-links { gap: 20px; }
@@ -686,6 +687,7 @@
 
     @media (max-width: 600px) {
       .features-grid { grid-template-columns: 1fr; }
+      .features-grid > .feature-card:last-child:nth-child(3n+1) { grid-column: 1; }
       .nav-links .nav-link-hide { display: none; }
       footer { flex-direction: column; text-align: center; }
       .footer-right { justify-content: center; gap: 12px 24px; }
