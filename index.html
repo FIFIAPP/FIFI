@@ -890,5 +890,19 @@
     </a>
   </div>
 
+  <script>
+    // Capture UTM source for extension attribution. Only writes when a
+    // utm_source param is present, so an organic revisit never overwrites
+    // an earlier ad-driven visit's attribution.
+    (function captureFifiUtmSource() {
+      var params = new URLSearchParams(window.location.search);
+      var source = params.get('utm_source');
+      if (source) {
+        localStorage.setItem('fifi_utm_source', source);
+        localStorage.setItem('fifi_utm_source_captured_at', Date.now().toString());
+      }
+    })();
+  </script>
+
 </body>
 </html>
